@@ -24,16 +24,19 @@ class MyConstant {
   static Color light = Color(0xff9fa8da);
 
   //Style
-  TextStyle h1Style =  TextStyle(
-    fontSize: 24,
-    color:dark,
-    fontWeight: FontWeight.bold);
-  TextStyle h2Style =  TextStyle(
-    fontSize: 18,
-    color:dark,
-    fontWeight: FontWeight.w700);
-  TextStyle h3Style =  TextStyle(
-    fontSize: 14,
-    color:dark,
-    fontWeight: FontWeight.normal);
+  TextStyle h1Style =
+      TextStyle(fontSize: 24, color: dark, fontWeight: FontWeight.bold);
+  TextStyle h2Style =
+      TextStyle(fontSize: 18, color: dark, fontWeight: FontWeight.w700);
+  TextStyle h3Style =
+      TextStyle(fontSize: 14, color: dark, fontWeight: FontWeight.normal);
+
+  ButtonStyle myButtonStyle() { return
+    ElevatedButton.styleFrom(
+      primary: MyConstant.primary,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30),
+      ),
+    );
+  }
 }
