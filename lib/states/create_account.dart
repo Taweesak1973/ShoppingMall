@@ -19,19 +19,34 @@ class _CreateAccountState extends State<CreateAccount> {
   File? file;
   @override
   void initState() {
-    findLatLng();
+    checkPermission();
     super.initState();
   }
 
-  Future<Null> findLatLng() async {
+  Future<Null> checkPermission() async {
     bool locationService;
     LocationPermission locationPermission;
     locationService = await Geolocator.isLocationServiceEnabled();
     if (locationService) {
       print('Service Location Open');
+      locationPermission = await Geolocator.checkPermission();
+      if (locationPermission == LocationPermission.denied) {
+        locationPermission = await Geolocator.requestPermission();
+        if (locationPermission == LocationPermission.deniedForever) {
+          MyDialog().alertLocationService(context);
+        } else {
+         // Find LatLng
+        }
+      } else {
+        if (locationPermission == LocationPermission.deniedForever) {
+          MyDialog().alertLocationService(context);
+        } else {
+          //Find Latlng
+        }
+      }
     } else {
       print('Service Location Close');
-    
+
       MyDialog().alertLocationService(context);
     }
   }
